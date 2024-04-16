@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Login Form</title>
+</head>
+
+<body>
+    <h2>Login Form</h2>
+    <form id="loginForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" value="rzwn" required><br><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" value="rzwn121" required><br><br>
+
+        <input type="submit" value="Login">
+    </form>
+
+    <div id="response"></div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function (e) {
+            e.preventDefault(); // Prevent form submission
+
+            var form = document.getElementById('loginForm');
+            var formData = new FormData(form);
+
+            fetch('/n', {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => response.text())
+                .then(data => {
+                    var message = (data === 'true') ? 'Login successful!' : (data === 'false') ? 'Login failed!' : 'Other error occurred.';
+                    document.getElementById('response').innerHTML = '<p><strong>' + message + '</strong></p>';
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    document.getElementById('response').innerHTML = '<p><strong>An error occurred. Please try again later.</strong></p>';
+                });
+        });
+    </script>
+
+</body>
+
+</html>
