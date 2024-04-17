@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @font-face {
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/rubik/v28/iJWZBXyIfDnIV5PNhY1KTN7Z-Yh-NYiFV0U1.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Rubik !important
+}
+
+body,
+html {
+    height: 100%;
+}
+
+tr {
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+a {
+    margin: 0;
+    transition: all .4s;
+    -webkit-transition: all .4s;
+    -o-transition: all .4s;
+    -moz-transition: all .4s
+}
+
+a:focus {
+    outline: none !important
+}
+
+a:hover {
+    text-decoration: none
+}
+
+h2 {
+    margin: 0
+}
+
+.ct {
+    width: 100%;
+    min-height: 100vh;
+    background: #838383;
+    display: flex;
+    justify-content: center;
+}
+
+.wt {
+    width: 750px
+}
+
+.t {
+    background-color: #fff;
+    border-radius: 1rem;
+}
+
+table {
+    width: 100%
+}
+
+td {
+    font-weight: unset;
+    padding-right: 10px
+}
+
+.title {
+    width: 75%;
+    padding-left: 20px
+}
+
+.view {
+    width: 25%;
+    text-align: right;
+}
+
+.tb td {
+    padding-top: 16px;
+    padding-bottom: 16px
+}
+
+.t.v5 td {
+    font-family: Lato-Regular;
+    font-size: 15px;
+    color: gray;
+    line-height: 1.4;
+    background-color: #f7f7f7
+}
+
+.t.v5 .tb tr {
+    overflow: hidden;
+    border-bottom: 10px solid #fff;
+    border-radius: 10px
+}
+
+.t.v5 .tb table {
+    border-collapse: separate;
+    border-spacing: 0 10px
+}
+
+.t.v5 .tb td {
+    border: solid 1px transparent;
+    border-style: solid none;
+}
+
+.t.v5 .tb td:first-child {
+    border-left-style: solid;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px
+}
+
+.t.v5 .tb td:last-child {
+    border-right-style: solid;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px
+}
+
+.t.v5 tr:hover td {
+    background-color: #ebebeb;
+    cursor: pointer
+}
+
+.h {
+    text-align: center;
+    font-size: 2.2rem;
+    padding: 1rem;
+    color: white;
+}
+
+.b {
+    background: #4272d7;
+    padding: 5px 12px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: white;
+}
+.b:hover {
+    background: #2157cc;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+::-webkit-scrollbar-thumb {
+    background: #4272d7;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #2157cc;
+}
+    </style>
+    <style>
+        /* Styles for the modal */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Modal -->
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <p id="modalText"></p>
+    </div>
+</div>
+
+<!-- JavaScript to show/hide modal and set modal text -->
+<script>
+    // Function to show the modal with the specified text
+    function showModal(text) {
+        var modal = document.getElementById('modal');
+        var modalText = document.getElementById('modalText');
+        modal.style.display = "block";
+        modalText.textContent = text;
+    }
+
+    // Function to close the modal
+    function closeModal() {
+        var modal = document.getElementById('modal');
+        modal.style.display = "none";
+    }
+
+    // Event listener to close the modal when clicking outside of it
+    window.onclick = function(event) {
+        var modal = document.getElementById('modal');
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
+
+<!-- Your HTML structure -->
+<div class="ct">
+    <div class="wt">
+        <div class="h">
+            <h2>RXN</h2>
+        </div>
+        <div class="t v5">
+            <div class="tb">
+                <table style="padding: 0.5rem;">
+                    <tbody id="jd">
+                        <tr>
+                            <td class="title">name 1</td>
+                            <td class="view"><a class="b" onclick="showModal('1')">view</a></td>
+                        </tr>
+                        <tr>
+                            <td class="title">name 2</td>
+                            <td class="view"><a id="2" class="b" onclick="showModal('2')">view</a></td>
+                        </tr>
+                        <tr>
+                            <td class="title">name 3</td>
+                            <td class="view"><a id="3" class="b" onclick="showModal('3')">view</a></td>
+                        </tr>
+                        <tr>
+                            <td class="title">name 4</td>
+                            <td class="view"><a id="4" class="b" onclick="showModal('4')">view</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
